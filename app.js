@@ -34,3 +34,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
   });
 });
+
+
+document.querySelectorAll('[data-carousel]').forEach(carousel=>{
+  const track=carousel.querySelector('.result-carousel-track');
+  const prev=carousel.querySelector('.carousel-arrow.prev');
+  const next=carousel.querySelector('.carousel-arrow.next');
+  const amount=()=>Math.min(track.clientWidth*.82,420);
+  prev?.addEventListener('click',()=>track.scrollBy({left:-amount(),behavior:'smooth'}));
+  next?.addEventListener('click',()=>track.scrollBy({left:amount(),behavior:'smooth'}));
+});
