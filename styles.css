@@ -568,3 +568,26 @@ footer img{width:190px}
 @media(max-width:1100px){.team-screenshot-grid,.direct-proof-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:720px){.team-screenshot-grid,.direct-proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.team-shot{min-height:240px}.team-shot img{min-height:240px}.compact-proof img{height:260px}}
 @media(max-width:480px){.team-screenshot-grid,.direct-proof-grid{grid-template-columns:1fr}.team-shot img,.compact-proof img{height:auto;min-height:0;max-height:none}.team-shot{min-height:0}.team-proof-slider .result-slide{min-width:78vw;width:78vw;height:440px}}
+
+/* Section-by-section replanning */
+.compact-section{padding-top:72px;padding-bottom:72px}
+.section-link{display:inline-flex;margin-top:28px}
+.home-skill-tags{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 30px}
+.home-skill-tags span{padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.035);font:700 13px Manrope}
+.btn-ghost{background:transparent!important;color:var(--cream)!important;border:1px solid rgba(255,255,255,.18)!important}
+.video-link-banner{width:min(92%,var(--max));margin:40px auto 110px;padding:46px 50px;border-radius:30px;display:flex;justify-content:space-between;align-items:center;gap:30px;background:linear-gradient(135deg,#dfffc8,#87f49b);color:#092312}
+.video-link-banner h2{font:800 clamp(34px,4vw,54px)/1 Manrope;letter-spacing:-.04em;margin:8px 0}
+.video-link-banner p{margin:0;color:#23452e}
+.video-link-banner .kicker{color:#1f713d}
+.video-link-banner .btn{background:#0b2112;color:#f4ffed}
+.skill-income-path{border-top:1px solid var(--line)}
+.three-step-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.three-step-row article{padding:26px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.03)}
+.three-step-row article>span{color:var(--lime);font:800 11px Manrope}.three-step-row h3{font:800 28px Manrope;margin:10px 0}.three-step-row p{margin:0;color:var(--muted)}
+/* Embedded Drive player deliberately removed. Watch buttons open Google Drive. */
+.explanation-section,.explanation-video{display:none!important}
+@media(max-width:700px){
+  .compact-section{padding-top:58px;padding-bottom:58px}
+  .video-link-banner{margin-bottom:80px;padding:34px 24px;align-items:flex-start;flex-direction:column;border-radius:24px}
+  .three-step-row{grid-template-columns:1fr}
+}
