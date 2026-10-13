@@ -85,3 +85,13 @@ footer{width:min(92%,var(--max));margin:0 auto;padding:30px 0 50px;border-top:1p
 .promise-lite{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:start}.promise-mini{display:grid;grid-template-columns:1fr 1fr;gap:14px}.promise-mini article{padding:22px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.03)}.promise-mini h3{font:800 24px Manrope;margin:0 0 8px}.promise-mini p{margin:0;color:var(--muted);line-height:1.5}.compact-join{margin-top:40px}
 @media(max-width:900px){.page-hero,.story-deep,.fhg-full,.promise-lite{grid-template-columns:1fr}.page-hero-media img{height:460px}.service-grid{grid-template-columns:1fr}.opportunity-steps article{grid-template-columns:1fr}.story-deep-gallery{order:-1}.milestone-row{grid-template-columns:1fr}.fhg-visual{grid-template-rows:220px 220px}}
 @media(max-width:600px){.inner-page{padding-top:88px}.page-hero{padding-top:24px}.page-hero h1{font-size:48px}.page-hero-media img{height:380px}.story-deep-gallery{grid-template-columns:1fr}.story-deep-gallery img,.story-deep-gallery img:nth-child(2){height:320px;margin-top:0}.fhg-visual{grid-template-columns:1fr;grid-template-rows:auto}.fhg-visual img:first-child{grid-row:auto}.fhg-visual img{height:250px}.promise-mini{grid-template-columns:1fr}.opportunity-steps h2{font-size:34px}}
+
+.achievement-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.achievement-card{overflow:hidden;border:1px solid var(--line);border-radius:26px;background:rgba(255,255,255,.035)}
+.achievement-card img{width:100%;height:320px;object-fit:cover}
+.achievement-card>div{padding:24px}
+.achievement-card span{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--lime);font-weight:800}
+.achievement-card h3{font:800 28px/1.1 Manrope;margin:10px 0}
+.achievement-card p{margin:0;color:var(--muted);line-height:1.65}
+.real-community-strip{margin-top:90px}
+@media(max-width:750px){.achievement-grid{grid-template-columns:1fr}.achievement-card img{height:260px}}
