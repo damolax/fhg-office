@@ -675,3 +675,71 @@ footer img{width:190px}
   .community-slide{flex-basis:84vw;height:280px}
   .floating-join{left:12px;right:12px;bottom:12px;text-align:center}
 }
+
+/* Layout cleanup pass */
+.hero{min-height:760px}
+.hero-content{max-width:820px}
+.hero h1{max-width:820px}
+.hero p{max-width:650px}
+
+.promise.compact-section{padding-top:70px}
+.promise-grid{align-items:stretch}
+.promise-card{min-height:310px}
+.promise-card h3{margin-top:58px}
+
+.split-section{align-items:center}
+.split-copy .section-lead{max-width:610px}
+.why-my-team{padding-top:76px;padding-bottom:76px}
+
+.home-testimonials{padding-top:72px;padding-bottom:82px}
+.testimonial-track figure:nth-child(even){transform:none}
+.team-proof-slider .testimonial-track{animation-duration:42s}
+
+.result-carousel{width:100%;overflow:visible}
+.result-carousel-track{width:100%;padding:4px 0 16px;overscroll-behavior-x:contain}
+.result-carousel .team-shot{flex:0 0 clamp(270px,28vw,330px);height:410px;min-height:0}
+.result-carousel .team-shot img{height:100%;min-height:0;object-fit:cover}
+.result-carousel-large .proof-result-card{flex:0 0 clamp(270px,28vw,330px)}
+.result-carousel-large .compact-proof img{height:350px}
+.carousel-arrow.prev{left:10px}
+.carousel-arrow.next{right:10px}
+.carousel-arrow{top:46%}
+
+.org-result-card{flex:0 0 clamp(300px,32vw,390px)}
+.community-slide{flex:0 0 clamp(320px,38vw,440px)}
+
+.team-results-head{grid-template-columns:1fr minmax(260px,.6fr);gap:36px}
+.team-results-section{overflow:hidden}
+.proof-results,.organisation-results-page,.real-community-strip{overflow:hidden}
+
+.page-hero{min-height:560px;padding-bottom:64px;align-items:center}
+.page-hero-media img{height:500px}
+.testimonial-page{padding-top:125px}
+.real-community-strip{margin-top:84px}
+
+footer{margin-top:28px}
+
+@media(max-width:900px){
+  .hero{min-height:700px}
+  .hero-content{padding-bottom:60px}
+  .page-hero{grid-template-columns:1fr;gap:32px}
+  .page-hero-media img{height:420px}
+  .team-results-head{grid-template-columns:1fr}
+  .carousel-arrow{display:none}
+}
+
+@media(max-width:650px){
+  .hero{min-height:650px}
+  .hero-content{padding-top:115px;padding-bottom:46px}
+  .hero h1{font-size:46px}
+  .hero-trust-row{margin-top:18px}
+  .promise-card{min-height:240px}
+  .why-team-grid article{min-height:auto}
+  .result-carousel .team-shot{flex-basis:82vw;height:420px}
+  .result-carousel-large .proof-result-card{flex-basis:82vw}
+  .result-carousel-large .compact-proof img{height:330px}
+  .org-result-card{flex-basis:84vw}
+  .community-slide{flex-basis:86vw;height:260px}
+  .testimonial-page{padding-top:100px}
+  .page-intro{margin-bottom:38px}
+}
