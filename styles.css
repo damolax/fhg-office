@@ -44,3 +44,15 @@ footer{width:min(92%,var(--max));margin:0 auto;padding:30px 0 50px;border-top:1p
   .site-header{top:8px}.brand img{width:150px}.section{padding:78px 0}.hero-content{padding-top:130px}.hero p{font-size:17px}.hero-actions{align-items:flex-start;flex-direction:column}.micro-proof{margin-top:28px}
   .skill-list div{grid-template-columns:1fr;gap:6px}.wealth-gallery{grid-template-columns:1fr;grid-template-rows:260px 220px 220px}.wealth-gallery .tall{grid-row:auto}.floating-card{left:14px}.story-copy{padding:30px 24px}.lifestyle-section{padding-left:22px;padding-right:22px}.join-section{border-radius:26px}.join-section h2,.section h2{font-size:40px}footer{grid-template-columns:1fr}footer small{grid-column:1}
 }
+.fhg-about{margin-top:28px;display:grid;gap:22px}
+.fhg-about-copy{padding:34px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02))}
+.fhg-about-copy h2{max-width:820px;margin-top:12px}.fhg-about-copy p{max-width:900px;color:var(--muted);font-size:17px;line-height:1.7}.fhg-about-copy strong{color:#f5fff7}.evidence-note{font-size:12px!important;color:#7f9186!important;margin-top:18px}
+.journey-stage{padding:38px;border-radius:30px;background:linear-gradient(135deg,#0f2418,#102d1c);border:1px solid rgba(182,255,117,.16)}
+.stage-intro{max-width:780px}.stage-intro h3{font:800 clamp(32px,4vw,52px)/1.02 Manrope;margin:12px 0 16px;letter-spacing:-.035em}.stage-intro p{color:#d6e1da;font-size:17px;line-height:1.7}
+.stage-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+.stage-grid article{padding:24px;border-radius:20px;background:rgba(255,255,255,.035);border:1px solid var(--line);min-height:230px}
+.stage-no{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:rgba(182,255,117,.1);color:var(--lime);font-weight:800;font-size:11px}
+.stage-grid h4{font:800 22px/1.15 Manrope;margin:22px 0 10px}.stage-grid p{color:var(--muted);line-height:1.6;margin:0}
+.stage-close{margin-top:20px;padding:20px 22px;border-radius:18px;background:var(--cream);color:var(--dark);font:800 20px/1.4 Manrope}
+@media(max-width:900px){.stage-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.journey-stage,.fhg-about-copy{padding:24px}.stage-grid{grid-template-columns:1fr}.stage-grid article{min-height:auto}.stage-close{font-size:17px}}
