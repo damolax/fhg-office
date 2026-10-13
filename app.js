@@ -24,3 +24,13 @@ document.querySelectorAll('.promise-card,.split-media,.split-copy,.wealth-copy,.
 const style=document.createElement('style');
 style.textContent='.visible{opacity:1!important;transform:translateY(0)!important}';
 document.head.appendChild(style);
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+  document.querySelectorAll('.desktop-nav a').forEach(a=>{
+    const href=(a.getAttribute('href')||'').split('#')[0].toLowerCase();
+    if((current==='index.html' && (href===''||href==='index.html')) || href===current){
+      a.classList.add('active');
+    }
+  });
+});
