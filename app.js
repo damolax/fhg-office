@@ -18,7 +18,7 @@ const observer=new IntersectionObserver(entries=>{
     if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}
   })
 },{threshold:.12});
-document.querySelectorAll('.promise-card,.split-media,.split-copy,.wealth-copy,.wealth-gallery,.story-card,.video-placeholder,.lifestyle-cards article,.faq-list details').forEach(el=>{
+document.querySelectorAll('.promise-card,.split-media,.split-copy,.wealth-copy,.wealth-gallery,.story-card,.video-placeholder,.lifestyle-cards article,.faq-list details,.journey-flow article,.testimonial-gallery figure').forEach(el=>{
   el.style.opacity='0';el.style.transform='translateY(22px)';el.style.transition='opacity .7s ease,transform .7s ease';observer.observe(el)
 });
 const style=document.createElement('style');
