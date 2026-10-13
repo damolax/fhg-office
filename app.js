@@ -10,7 +10,7 @@ form?.addEventListener('submit',e=>{
   const status=document.getElementById('status').value;
   const goal=document.getElementById('goal').value.trim();
   const text=`Hello Olalekan, my name is ${name}. I am a ${status}. I saw your opportunity website and I would like the full explanation. What I want to improve right now is: ${goal}`;
-  window.open('https://wa.me/2347013960946?text='+encodeURIComponent(text),'_blank');
+  window.open('https://wa.me/2347061427683?text='+encodeURIComponent(text),'_blank');
 });
 
 const observer=new IntersectionObserver(entries=>{
