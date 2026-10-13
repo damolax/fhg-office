@@ -529,3 +529,28 @@ footer img{width:190px}
 .proof-result-copy p{margin:0;color:var(--muted);line-height:1.65}
 @media(max-width:900px){.proof-results-grid{grid-template-columns:1fr}.proof-result-card{display:grid;grid-template-columns:.9fr 1.1fr}.proof-result-card img{height:100%;min-height:300px}}
 @media(max-width:620px){.proof-result-card{display:block}.proof-result-card img{height:300px;min-height:0}}
+
+.team-results-section{padding-top:36px}
+.team-results-head{display:grid;grid-template-columns:1fr .8fr;gap:50px;align-items:end;margin-bottom:30px}
+.team-results-head h2{max-width:780px;margin-bottom:0}
+.team-results-head>p{color:var(--muted);font-size:17px;line-height:1.7;margin:0}
+.team-proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.team-proof-card{overflow:hidden;border:1px solid var(--line);border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025))}
+.team-proof-card img{width:100%;height:360px;object-fit:cover;object-position:top}
+.team-proof-copy{padding:22px}.team-proof-copy>span{color:var(--lime);font:800 10px Manrope;letter-spacing:.14em;text-transform:uppercase}
+.team-proof-copy h3{font:800 22px/1.15 Manrope;margin:9px 0}.team-proof-copy p{margin:0;color:var(--muted);line-height:1.6;font-size:14px}
+.team-results-note{margin-top:18px;padding:22px 24px;border-radius:18px;background:var(--cream);color:var(--dark);display:flex;gap:18px;align-items:center}
+.team-results-note strong{font:800 18px Manrope;white-space:nowrap}.team-results-note span{color:#3d4e42;line-height:1.5}
+.team-slider-intro{margin:-10px 0 28px;max-width:800px}
+.organisation-results-preview{display:grid;grid-template-columns:.8fr 1.2fr;gap:54px;align-items:center}
+.organisation-results-copy p{color:var(--muted);font-size:17px;line-height:1.75}.organisation-results-copy .btn{margin-top:14px}
+.organisation-results-gallery{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:220px 220px;gap:14px}
+.organisation-results-gallery figure{margin:0;overflow:hidden;border-radius:24px;border:1px solid var(--line)}.organisation-results-gallery img{width:100%;height:100%;object-fit:cover}
+.organisation-results-gallery .org-large{grid-row:1/3}
+.organisation-results-page{margin-top:90px}.org-achievement-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.org-achievement-grid article{overflow:hidden;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.03)}
+.org-achievement-grid img{width:100%;height:300px;object-fit:cover}.org-achievement-grid article>div{padding:22px}
+.org-achievement-grid span{color:var(--lime);font:800 10px Manrope;letter-spacing:.14em;text-transform:uppercase}
+.org-achievement-grid h3{font:800 25px Manrope;margin:9px 0}.org-achievement-grid p{margin:0;color:var(--muted);line-height:1.6}
+@media(max-width:900px){.team-results-head,.organisation-results-preview{grid-template-columns:1fr}.team-proof-grid{grid-template-columns:1fr}.org-achievement-grid{grid-template-columns:1fr}.team-proof-card img{height:auto;max-height:560px}.organisation-results-gallery{grid-template-rows:200px 200px}}
+@media(max-width:600px){.team-results-note{align-items:flex-start;flex-direction:column}.organisation-results-gallery{grid-template-columns:1fr;grid-template-rows:250px 220px 220px}.organisation-results-gallery .org-large{grid-row:auto}}
