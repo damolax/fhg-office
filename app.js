@@ -36,11 +36,37 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 
+
+
 document.querySelectorAll('[data-carousel]').forEach(carousel=>{
   const track=carousel.querySelector('.result-carousel-track');
   const prev=carousel.querySelector('.carousel-arrow.prev');
   const next=carousel.querySelector('.carousel-arrow.next');
-  const amount=()=>Math.min(track.clientWidth*.82,420);
-  prev?.addEventListener('click',()=>track.scrollBy({left:-amount(),behavior:'smooth'}));
-  next?.addEventListener('click',()=>track.scrollBy({left:amount(),behavior:'smooth'}));
+  if(!track) return;
+
+  const step=()=>Math.min(track.clientWidth*.82,420);
+  const move=dir=>track.scrollBy({left:dir*step(),behavior:'smooth'});
+
+  prev?.addEventListener('click',()=>move(-1));
+  next?.addEventListener('click',()=>move(1));
+
+  let timer;
+  const startAuto=()=>{
+    clearInterval(timer);
+    timer=setInterval(()=>{
+      const atEnd=track.scrollLeft+track.clientWidth>=track.scrollWidth-12;
+      if(atEnd) track.scrollTo({left:0,behavior:'smooth'});
+      else move(1);
+    },4200);
+  };
+  const stopAuto=()=>clearInterval(timer);
+
+  track.addEventListener('pointerdown',stopAuto,{passive:true});
+  track.addEventListener('touchstart',stopAuto,{passive:true});
+  track.addEventListener('pointerup',startAuto,{passive:true});
+  track.addEventListener('touchend',startAuto,{passive:true});
+  track.addEventListener('mouseenter',stopAuto);
+  track.addEventListener('mouseleave',startAuto);
+
+  startAuto();
 });
