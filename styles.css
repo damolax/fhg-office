@@ -755,3 +755,33 @@ footer{margin-top:28px}
   .social-footer{grid-template-columns:1fr;gap:16px}
   .footer-socials{justify-content:flex-start}
 }
+
+/* Clean About Page v2 */
+.brand-combo{display:flex;align-items:center;gap:9px}.brand-combo span{font:800 14px Manrope;color:var(--cream);white-space:nowrap}
+.clean-story-section{padding-top:70px}
+.clean-story-intro{max-width:850px;margin-bottom:46px}.clean-story-intro h2{font:800 clamp(44px,5vw,68px)/1 Manrope;letter-spacing:-.05em;margin:12px 0 20px}.clean-story-intro p{font-size:18px;color:var(--muted);line-height:1.7}
+.story-timeline{display:grid;gap:12px}
+.story-timeline article{display:grid;grid-template-columns:80px 1fr;gap:28px;padding:30px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018))}
+.story-index{font:800 12px Manrope;color:var(--lime);padding-top:7px}
+.story-timeline h3{font:800 clamp(26px,3vw,36px)/1.1 Manrope;margin:0 0 14px}
+.story-timeline p{max-width:900px;color:var(--muted);font-size:16px;line-height:1.72;margin:0 0 12px}.story-timeline p:last-child{margin-bottom:0}
+.clean-first-result{margin-top:20px}
+.skill-story-section{border-bottom:1px solid var(--line)}
+.story-skill-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}.story-skill-tags span{padding:12px 15px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.035);font:700 13px Manrope}
+.impact-section{padding-top:82px}
+.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+.impact-grid article{padding:28px 24px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.018))}
+.impact-grid strong{display:block;font:800 clamp(38px,4vw,58px)/1 Manrope;color:var(--lime);letter-spacing:-.04em}
+.impact-grid h3{font:800 20px Manrope;margin:14px 0 9px}.impact-grid p{margin:0;color:var(--muted);line-height:1.6;font-size:14px}
+.impact-story{margin-top:18px;padding:30px;border-radius:24px;background:var(--cream);color:#102015;display:grid;grid-template-columns:1fr 1fr;gap:36px}.impact-story p{margin:0;font-size:17px;line-height:1.65}
+.clean-belief-section{margin-top:28px}
+.about-fhg-clean{padding:70px 50px;margin-top:30px;border-radius:32px;border:1px solid var(--line);background:linear-gradient(145deg,#0d1c14,#09130e)}
+.about-fhg-clean h2{font:800 clamp(42px,5vw,66px)/1 Manrope;letter-spacing:-.045em;margin:12px 0 18px}.about-fhg-clean p{max-width:800px;color:var(--muted);font-size:17px;line-height:1.72}.about-fhg-clean .btn{margin-top:14px}
+@media(max-width:1000px){.impact-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){
+  .brand-combo img{width:135px}.brand-combo span{font-size:12px}
+  .story-timeline article{grid-template-columns:1fr;gap:8px;padding:24px}
+  .impact-grid{grid-template-columns:1fr}
+  .impact-story{grid-template-columns:1fr;gap:16px;padding:24px}
+  .about-fhg-clean{padding:42px 24px}
+}
