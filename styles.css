@@ -785,3 +785,36 @@ footer{margin-top:28px}
   .impact-story{grid-template-columns:1fr;gap:16px;padding:24px}
   .about-fhg-clean{padding:42px 24px}
 }
+
+/* About prose highlights + mobile carousel */
+.impact-narrative{
+  margin-top:34px;
+  padding:38px 42px;
+  border-radius:28px;
+  background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.02));
+  border:1px solid var(--line);
+  display:grid;
+  gap:0;
+}
+.impact-narrative p{
+  margin:0;
+  padding:18px 0;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.72;
+}
+.impact-narrative p:last-child{border-bottom:0}
+.impact-narrative strong{color:var(--cream);font-weight:800}
+.about-fhg-clean p+p{margin-top:14px}
+.result-carousel-track{
+  touch-action:pan-x;
+  -webkit-overflow-scrolling:touch;
+  cursor:grab;
+}
+.result-carousel-track:active{cursor:grabbing}
+@media(max-width:700px){
+  .impact-narrative{padding:24px}
+  .impact-narrative p{font-size:16px}
+  .result-carousel-track{scroll-snap-stop:always}
+}
