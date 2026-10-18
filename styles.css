@@ -1078,3 +1078,124 @@ body.proof-dialog-open{overflow:hidden}
 
 /* Keep free-skills grid visible below the fixed header when jumped to from the hero. */
 #skills{scroll-margin-top:126px}
+
+
+/* ===== FHG multi-page navigation, leadership story, and linked evidence ===== */
+.desktop-nav{gap:clamp(11px,1.5vw,23px)}
+.desktop-nav a{white-space:nowrap;font-size:13px}
+.desktop-nav a[aria-current="page"],.desktop-nav a.active{color:var(--lime)}
+.brand-combo{display:flex;align-items:center;gap:14px;white-space:nowrap}
+.site-header{max-width:1250px}
+.proof-figure-link,.proof-card-link{display:flex;flex-direction:column;width:100%;height:100%;text-decoration:none;color:inherit}
+.proof-figure-link:focus-visible,.proof-card-link:focus-visible{
+  outline:3px solid var(--lime);outline-offset:-3px;border-radius:19px
+}
+.proof-figure-link img{display:block;width:100%;height:100%;object-fit:contain}
+.testimonial-track figure .proof-figure-link img{height:100%;object-fit:cover}
+.testimonial-track figure .proof-figure-link{position:relative}
+.testimonial-track figure .proof-figure-link figcaption{position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(0deg,rgba(4,14,9,.96),transparent);padding:29px 18px 15px;color:#fff;font-weight:800}
+.testimonial-track figure:hover,.team-shot:hover,.org-result-card:hover{border-color:rgba(179,255,115,.52)}
+.team-shot{overflow:hidden}
+.team-shot .proof-figure-link{position:relative}
+.team-shot .proof-figure-link img{width:100%;height:100%;object-fit:contain}
+.team-shot .proof-figure-link figcaption{position:absolute;bottom:0;left:0;right:0;z-index:1;
+  background:linear-gradient(0deg,rgba(5,14,8,.96),rgba(5,14,8,.23));padding:26px 17px 15px;color:#fff}
+.org-result-card .proof-card-link>img{width:100%;height:280px;object-fit:contain;background:#101b14}
+.org-result-card .proof-card-link>div:not(.proof-preview-placeholder){padding:20px}
+.proof-open-inline{color:var(--lime);font:800 13px Manrope;padding:0 20px 21px;margin-top:auto}
+.proof-preview-placeholder{display:flex;align-items:center;justify-content:center;text-align:center;
+  width:100%;height:280px;background:linear-gradient(135deg,#14291a,#254530);padding:25px;
+  font:800 23px Manrope;color:#dbffb4}
+.office-field-label{font:800 13px Manrope;color:#132f1b;line-height:1.45}
+.join-field-help{font:500 12px/1.6 "DM Sans",sans-serif;color:#294f35;display:block;margin-top:-7px}
+.join-form #officeLocation{scroll-margin-top:150px}
+.fhg-story-bridge{padding:46px 44px;border:1px solid rgba(194,255,153,.16);
+  border-radius:28px;background:linear-gradient(128deg,#0e2918,#0d1c14)}
+.fhg-story-bridge h2{max-width:820px;font-size:clamp(31px,3.2vw,49px)}
+.fhg-story-bridge p{color:var(--muted);font-size:17px;line-height:1.7;max-width:650px}
+.fhg-history-page{padding-top:110px}
+.fhg-history-page .section{scroll-margin-top:130px}
+.fhg-history-hero{display:grid;grid-template-columns:1.08fr .78fr;gap:clamp(30px,5vw,78px);
+ align-items:center;padding-top:48px;padding-bottom:85px}
+.fhg-history-hero h1{font:800 clamp(43px,5vw,73px)/1.06 Manrope;letter-spacing:-.056em;
+ margin:18px 0 24px;max-width:770px;text-wrap:balance}
+.fhg-history-hero>div:first-child>p{font-size:clamp(16px,1.4vw,19px);line-height:1.8;color:#c2d4c6;max-width:660px}
+.fhg-founder-hero-image{border-radius:32px;background:#15251b;position:relative;overflow:hidden;
+  box-shadow:0 30px 70px rgba(0,0,0,.22);border:1px solid var(--line)}
+.fhg-founder-hero-image img{width:100%;height:clamp(380px,42vw,540px);object-fit:cover;object-position:center}
+.fhg-founder-hero-image:after{content:"FOUNDER · FHG";position:absolute;bottom:20px;left:20px;border-radius:999px;
+ padding:10px 15px;background:rgba(3,16,9,.84);color:#ceffa5;font:800 11px Manrope;letter-spacing:.15em}
+.fhg-story-head{max-width:860px;margin-bottom:30px}
+.fhg-story-head h2,.fhg-impact-numbers h2{font:800 clamp(37px,4.3vw,61px)/1.07 Manrope;
+ letter-spacing:-.048em;margin:15px 0 24px;text-wrap:balance}
+.fhg-founder-narrative{display:grid;grid-template-columns:minmax(230px,.55fr) minmax(0,1fr);gap:30px;align-items:start}
+.fhg-founder-profile{border:1px solid var(--line);border-radius:26px;overflow:hidden;background:#12231a;position:sticky;top:112px}
+.fhg-founder-profile img{width:100%;height:310px;object-fit:cover}
+.fhg-founder-profile>div{padding:24px}
+.fhg-founder-profile h3{font:800 25px/1.2 Manrope;margin:9px 0}
+.fhg-founder-profile p{color:var(--muted);font-size:14px;line-height:1.7}
+.fhg-story-chapters{display:grid;gap:14px}
+.fhg-story-chapters article{background:linear-gradient(155deg,rgba(255,255,255,.055),rgba(255,255,255,.02));
+ border:1px solid var(--line);border-radius:23px;padding:29px 31px}
+.fhg-story-chapters article>span{font:800 11px Manrope;color:var(--lime);letter-spacing:.13em}
+.fhg-story-chapters h3{font:800 clamp(23px,2.3vw,32px)/1.14 Manrope;margin:15px 0}
+.fhg-story-chapters p{color:#bbcbbf;font-size:16px;line-height:1.83;margin:0}
+.fhg-impact-numbers{background:#0e2216;border-radius:34px;padding:clamp(28px,4vw,56px);
+ border:1px solid rgba(188,255,140,.15)}
+.fhg-impact-numbers>p.section-lead{max-width:790px}
+.fhg-stats-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:31px}
+.fhg-stats-grid div{padding:28px 13px;border:1px solid rgba(255,255,255,.12);
+ border-radius:21px;text-align:center;background:rgba(255,255,255,.04)}
+.fhg-stats-grid strong{display:block;font:800 clamp(27px,2.7vw,40px)/1.15 Manrope;color:#c8ff91}
+.fhg-stats-grid span{display:block;color:#b4c9b8;font-size:12px;line-height:1.6;margin-top:11px}
+.fhg-stats-context{font-size:12px!important;color:#829b87;margin:20px 0 0}
+.fhg-leadership-section>.section-head{max-width:850px}
+.fhg-leadership-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.fhg-leader-card{background:linear-gradient(180deg,#12291b,#0d1a12);border:1px solid var(--line);
+ border-radius:24px;overflow:hidden;display:flex;flex-direction:column}
+.fhg-leader-card img{display:block;width:100%;height:335px;object-fit:cover;object-position:center}
+.fhg-leader-card>div{padding:27px;display:flex;flex-direction:column;flex:1}
+.fhg-leader-card span{color:var(--lime);font:800 11px Manrope;text-transform:uppercase;letter-spacing:.14em}
+.fhg-leader-card h3{font:800 25px/1.17 Manrope;letter-spacing:-.03em;margin:14px 0 11px}
+.fhg-leader-card p{font-size:14px;line-height:1.72;color:var(--muted);margin:0 0 20px}
+.fhg-leader-card a{margin-top:auto;color:var(--lime);font:800 13px Manrope}
+.fhg-philosophy{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start}
+.fhg-philosophy h2{font:800 clamp(38px,4vw,56px)/1.08 Manrope;letter-spacing:-.045em;margin:15px 0}
+.fhg-philosophy>div:first-child>p{color:var(--muted);font-size:17px;line-height:1.78}
+.fhg-philosophy-steps{display:grid;gap:15px}
+.fhg-philosophy-steps article{padding:24px;display:grid;grid-template-columns:43px 1fr;
+ column-gap:14px;background:rgba(255,255,255,.035);border-radius:18px;border:1px solid var(--line)}
+.fhg-philosophy-steps b{grid-row:span 2;color:var(--lime);font:800 15px Manrope}
+.fhg-philosophy-steps strong{font:800 18px Manrope}
+.fhg-philosophy-steps p{margin:6px 0 0;color:var(--muted);font-size:14px;line-height:1.6}
+.fhg-about-cta{width:min(92%,var(--max));margin:0 auto 70px}
+@media(max-width:1050px){
+  .site-header>.desktop-nav{gap:10px}
+  .site-header>.desktop-nav a{font-size:12px}
+  .brand-combo img{width:130px}
+  .fhg-stats-grid{grid-template-columns:repeat(3,1fr)}
+  .fhg-leadership-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  .site-header.open .desktop-nav{display:flex!important;z-index:55}
+  .fhg-history-hero,.fhg-founder-narrative,.fhg-philosophy{grid-template-columns:1fr}
+  .fhg-history-hero{gap:28px}
+  .fhg-founder-hero-image img{height:auto;max-height:560px;object-fit:contain}
+  .fhg-founder-profile{position:static;display:grid;grid-template-columns:180px 1fr}
+  .fhg-founder-profile img{height:100%;min-height:190px}
+}
+@media(max-width:650px){
+  .fhg-history-page{padding-top:92px}
+  .fhg-history-hero h1{font-size:clamp(40px,9vw,58px)}
+  .fhg-founder-narrative{gap:18px}
+  .fhg-founder-profile{grid-template-columns:1fr}
+  .fhg-founder-profile img{height:300px;object-fit:cover}
+  .fhg-stats-grid{grid-template-columns:repeat(2,1fr)}
+  .fhg-leadership-grid{grid-template-columns:1fr}
+  .fhg-leader-card img{height:330px;object-fit:contain;background:#14221a}
+  .fhg-story-bridge{padding:30px 23px}
+  .fhg-history-hero{padding-top:25px}
+  .fhg-story-chapters article{padding:23px}
+  .join-section .office-field-label{font-size:13px}
+}
