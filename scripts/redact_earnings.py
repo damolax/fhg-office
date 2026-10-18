@@ -74,7 +74,7 @@ def extract_wider_fhg_images():
             binary=base64.b64decode(content,validate=True)
         except Exception:
             return match.group(0)
-        if not (binary.startswith(b"\\xff\\xd8") and binary.endswith(b"\\xff\\xd9")):
+        if not (binary.startswith(bytes([255,216])) and binary.endswith(bytes([255,217]))):
             return match.group(0)
         if index>=len(names):
             return match.group(0)
