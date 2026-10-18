@@ -1075,3 +1075,6 @@ body.proof-dialog-open{overflow:hidden}
 /* Prevent persistent CTA from covering footer links. */
 .floating-join{transition:opacity .25s ease,transform .2s ease,box-shadow .2s ease}
 .floating-join.is-hidden,.floating-join.is-hidden:hover{opacity:0;pointer-events:none;transform:translateY(16px)}
+
+/* Keep free-skills grid visible below the fixed header when jumped to from the hero. */
+#skills{scroll-margin-top:126px}
