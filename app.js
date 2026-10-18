@@ -151,3 +151,15 @@ document.querySelectorAll('[data-carousel]').forEach(carousel=>{
     }
   });
 })();
+
+
+// Keep the floating CTA out of the way once visitors reach the footer.
+(function avoidFooterObstruction(){
+  const footer=document.querySelector('.social-footer');
+  const floating=document.querySelector('.floating-join');
+  if(!footer||!floating||typeof IntersectionObserver==='undefined')return;
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>floating.classList.toggle('is-hidden',entry.isIntersecting));
+  },{threshold:0,rootMargin:'0px 0px -36px 0px'});
+  observer.observe(footer);
+})();
