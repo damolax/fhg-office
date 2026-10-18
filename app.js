@@ -70,3 +70,84 @@ document.querySelectorAll('[data-carousel]').forEach(carousel=>{
 
   startAuto();
 });
+
+
+// Evidence gallery: accessible, keyboard-friendly details for every result.
+(function setupResultStories(){
+  const modal=document.getElementById('proofModal');
+  if(!modal)return;
+  const cards=Array.from(document.querySelectorAll('.story-result-card'));
+  const visual=document.getElementById('proofModalVisual');
+  const heading=document.getElementById('proofModalTitle');
+  const category=document.getElementById('proofModalCategory');
+  const statistic=document.getElementById('proofModalStat');
+  const description=document.getElementById('proofModalDescription');
+  const panel=modal.querySelector('.proof-modal-panel');
+  const prev=document.getElementById('proofPrevious');
+  const next=document.getElementById('proofNext');
+  let current=0;
+  let previousFocus=null;
+
+  function show(index){
+    current=(index+cards.length)%cards.length;
+    const card=cards[current];
+    heading.textContent=card.dataset.proofTitle||'Shared result';
+    category.textContent=card.dataset.proofLabel||'Achievement';
+    statistic.textContent=card.dataset.proofStat||'';
+    description.textContent=card.dataset.proofDescription||'';
+    visual.replaceChildren();
+    const image=card.querySelector('.story-result-media img');
+    if(image){
+      const large=document.createElement('img');
+      large.src=image.getAttribute('src');
+      large.alt=image.alt||heading.textContent;
+      large.decoding='async';
+      visual.appendChild(large);
+    }else{
+      const fallback=card.querySelector('.proof-image-unavailable');
+      if(fallback)visual.appendChild(fallback.cloneNode(true));
+    }
+    prev.setAttribute('aria-label','Previous result, '+(cards[(current-1+cards.length)%cards.length].dataset.proofTitle||''));
+    next.setAttribute('aria-label','Next result, '+(cards[(current+1)%cards.length].dataset.proofTitle||''));
+  }
+
+  function open(index){
+    previousFocus=document.activeElement;
+    show(index);
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('proof-dialog-open');
+    panel.focus();
+  }
+
+  function close(){
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('proof-dialog-open');
+    if(previousFocus&&typeof previousFocus.focus==='function')previousFocus.focus();
+  }
+
+  cards.forEach((card,index)=>{
+    card.addEventListener('click',()=>open(index));
+    card.addEventListener('keydown',event=>{
+      if(event.key==='Enter'||event.key===' '){
+        event.preventDefault();open(index);
+      }
+    });
+  });
+  modal.querySelectorAll('[data-close-proof]').forEach(el=>el.addEventListener('click',close));
+  prev.addEventListener('click',()=>show(current-1));
+  next.addEventListener('click',()=>show(current+1));
+  document.addEventListener('keydown',event=>{
+    if(!modal.classList.contains('is-open'))return;
+    if(event.key==='Escape')close();
+    else if(event.key==='ArrowLeft'){event.preventDefault();show(current-1)}
+    else if(event.key==='ArrowRight'){event.preventDefault();show(current+1)}
+    else if(event.key==='Tab'){
+      const focusable=[...modal.querySelectorAll('button:not([disabled])')];
+      const first=focusable[0],last=focusable[focusable.length-1];
+      if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
+      else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+    }
+  });
+})();
