@@ -151,7 +151,7 @@ document.querySelectorAll('[data-carousel]').forEach(carousel=>{
       else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
     }
   });
-}  // Open a specific result when a visitor arrives from Home or About Me.
+  // Open a specific result when a visitor arrives from Home or About Me.
   const requested=new URLSearchParams(window.location.search).get('result');
   if(requested){
     const initial=cards.findIndex(card=>card.dataset.proofId===requested);
