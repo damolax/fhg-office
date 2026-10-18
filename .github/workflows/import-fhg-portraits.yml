@@ -28,7 +28,7 @@ jobs:
               req=urllib.request.Request(item["url"],headers={"User-Agent":"FHG-Site-Asset-Import/1.0"})
               with urllib.request.urlopen(req, timeout=35) as result:
                   binary=result.read()
-              if not (binary.startswith(b"\\x89PNG") or binary.startswith(b"\\xff\\xd8")):
+              if not (binary.startswith(bytes([137,80,78,71])) or binary.startswith(bytes([255,216]))):
                   raise RuntimeError(f"Invalid image download: {dest}")
               dest.write_bytes(binary)
               print("Imported",dest,len(binary),"bytes")
