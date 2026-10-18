@@ -9,7 +9,8 @@ form?.addEventListener('submit',e=>{
   const name=document.getElementById('name').value.trim();
   const status=document.getElementById('status').value;
   const goal=document.getElementById('goal').value.trim();
-  const text=`Hello Olalekan, my name is ${name}. I am a ${status}. I saw your opportunity website and I would like the full explanation. What I want to improve right now is: ${goal}`;
+  const preferredOffice=document.getElementById('officeLocation')?.value.trim()||'Not specified';
+  const text=`Hello Olalekan, my name is ${name}. I am a ${status}. I saw your FHG website and I would like to join or learn more. My preferred office location is: ${preferredOffice}. What I want to improve right now is: ${goal}. Please help me find a suitable office close to this location.`;
   window.open('https://wa.me/2347061427683?text='+encodeURIComponent(text),'_blank');
 });
 
@@ -150,7 +151,13 @@ document.querySelectorAll('[data-carousel]').forEach(carousel=>{
       else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
     }
   });
-})();
+}  // Open a specific result when a visitor arrives from Home or About Me.
+  const requested=new URLSearchParams(window.location.search).get('result');
+  if(requested){
+    const initial=cards.findIndex(card=>card.dataset.proofId===requested);
+    if(initial!==-1)open(initial);
+  }
+)();
 
 
 // Keep the floating CTA out of the way once visitors reach the footer.
