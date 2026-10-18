@@ -1199,3 +1199,14 @@ body.proof-dialog-open{overflow:hidden}
   .fhg-story-chapters article{padding:23px}
   .join-section .office-field-label{font-size:13px}
 }
+
+/* Preserve sharpness and composition at every responsive size. */
+.about-story-hero .page-hero-media{overflow:hidden;border-radius:26px;background:#0e1812}
+.about-story-hero .page-hero-media img{width:100%;height:clamp(380px,42vw,590px);object-fit:cover;object-position:center 22%;image-rendering:auto}
+.fhg-founder-hero-image img,.fhg-leader-card img,.fhg-founder-profile img{image-rendering:auto}
+.fhg-leader-card img{object-position:center top}
+.story-result-media img,.org-story-media img,.proof-modal-visual img,.org-result-card img{object-fit:contain;image-rendering:auto}
+@media (max-width:700px){
+.about-story-hero .page-hero-media img{height:auto;max-height:700px;object-fit:contain}
+.fhg-leader-card img{height:auto;max-height:550px;object-fit:contain}
+}
