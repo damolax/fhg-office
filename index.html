@@ -114,10 +114,13 @@
   </section>
 
   <section id="join" class="join-section">
-    <div class="join-copy"><span class="kicker">Ready?</span><h2>Start the conversation.</h2><p>Message me first, then I will guide you on how to meet us physically and get started.</p></div>
+    <div class="join-copy"><span class="kicker">Ready?</span><h2>Start the conversation.</h2><p>Tell me your preferred area or city, and I will help you find an FHG office close to you.</p></div>
     <form class="join-form" id="joinForm">
       <input id="name" type="text" placeholder="Your name" required>
       <select id="status" required><option value="">What best describes you?</option><option>Student</option><option>Worker / Employee</option><option>Freelancer</option><option>Business owner</option><option>Starting from zero</option></select>
+      <label class="office-field-label" for="officeLocation">Where would you prefer to visit an FHG office?</label>
+      <input id="officeLocation" name="officeLocation" type="text" autocomplete="address-level2" placeholder="Preferred area, city and state (e.g. Bodija, Ibadan, Oyo)" required>
+      <small class="join-field-help">Share the area closest to you so I can help you find a suitable office.</small>
       <textarea id="goal" placeholder="What do you want to improve?" required></textarea>
       <button class="btn" type="submit">Talk to Olalekan</button>
     </form>
