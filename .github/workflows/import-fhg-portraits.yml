@@ -1,0 +1,44 @@
+name: Import user-provided portraits as permanent FHG website assets
+on:
+  push:
+    paths:
+      - .github/workflows/import-fhg-portraits.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-photos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Download and save uploaded photos to this repository
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os, urllib.request, pathlib, subprocess, time
+          assets=[{"path":"assets/people/fhg-founder.png","url":"https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2Fe4657666-2c92-4eef-a660-1c9ad5af1f44/watermark:F/width:179?csig=AAAAAAAAAAAAAAAAAAAAABeMTZ0g_lhY7JHRAm5YiFO7lpFG_m9C46JNC8VgJUoE&exp=1792367139&osig=AAAAAAAAAAAAAAAAAAAAAKScrpd8f4Dlahx77I6w4pTo5R4P4jRzYiEtMRadGXNL&signer=media-rpc&token=AAIAAU0AJGU0NjU3NjY2LTJjOTItNGVlZi1hNjYwLTFjOWFkNWFmMWY0NAAAAAABoVFoGLjUtdSFKcIfq7Z0OUWyYbIS6QvfbFcLd2lSnjURa0LqZQ&x-canva-quality=thumbnail"},{"path":"assets/people/fhg-president.png","url":"https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2F9ce168de-8e84-4737-b3f4-e9db8a548fa2/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAKEXyZfbVI0a1-nuxbMmD8pou7reLIPewwYzHYY73dnl&exp=1792367396&osig=AAAAAAAAAAAAAAAAAAAAAHhKKBkQ-OTyEmwTCFFgc_GNNfsBAvad7oEWBg44SLo-&signer=media-rpc&token=AAIAAU0AJDljZTE2OGRlLThlODQtNDczNy1iM2Y0LWU5ZGI4YTU0OGZhMgAAAAABoVFsBKBE673D8-smOeqMGWKTmuDA-wlJy54VX_e8LzZi2gUA9A&x-canva-quality=thumbnail"},{"path":"assets/people/fhg-pillar.png","url":"https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2F5be2064a-e92f-447e-b2ad-3b5e6a552fce/watermark:F/width:199?csig=AAAAAAAAAAAAAAAAAAAAAElf_PNk8m4RTnJnSPC-sYa6GJnglRBac4wPWhg9nxFR&exp=1792365073&osig=AAAAAAAAAAAAAAAAAAAAAFvvibw2HppAbNR3_xPAfUudOwukmpjlG_IuMo_zEXvL&signer=media-rpc&token=AAIAAU0AJDViZTIwNjRhLWU5MmYtNDQ3ZS1iMmFkLTNiNWU2YTU1MmZjZQAAAAABoVFIkmjPVCvMiKHvcvW1z5AZgJAamFolSWLtpUICgZWcfaMjYg&x-canva-quality=thumbnail"},{"path":"assets/people/olalekan.png","url":"https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2Fb6d2dbeb-afad-4a33-bf9b-d2ca5b50ecab/watermark:F/width:135?csig=AAAAAAAAAAAAAAAAAAAAAHQYIN_W-rxcr7IL1oV4HgGgF447TtrwmFK6k8uG10OD&exp=1792365885&osig=AAAAAAAAAAAAAAAAAAAAANdiO7VVdxCtkynLSno3ujzmpdgMVjmIQ9qfel7tVSFY&signer=media-rpc&token=AAIAAU0AJGI2ZDJkYmViLWFmYWQtNGEzMy1iZjliLWQyY2E1YjUwZWNhYgAAAAABoVFU9khcG3J_b3l3AVUjjRavqRaqHehhuKWpx6yL-a2Le0XBpw&x-canva-quality=thumbnail"}]
+          for item in assets:
+              dest=pathlib.Path(item["path"])
+              dest.parent.mkdir(parents=True, exist_ok=True)
+              req=urllib.request.Request(item["url"],headers={"User-Agent":"FHG-Site-Asset-Import/1.0"})
+              with urllib.request.urlopen(req, timeout=35) as result:
+                  binary=result.read()
+              if not (binary.startswith(b"\\x89PNG") or binary.startswith(b"\\xff\\xd8")):
+                  raise RuntimeError(f"Invalid image download: {dest}")
+              dest.write_bytes(binary)
+              print("Imported",dest,len(binary),"bytes")
+          PY
+      - name: Commit images to repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/people/
+          if ! git diff --cached --quiet; then
+            git commit -m "Store uploaded FHG founder leadership and personal portraits"
+            git push
+          fi
