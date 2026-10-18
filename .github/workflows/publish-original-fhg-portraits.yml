@@ -1,0 +1,35 @@
+name: Publish full resolution FHG portraits
+on:
+  push:
+    paths: [.github/workflows/publish-original-fhg-portraits.yml]
+  workflow_dispatch:
+permissions: {contents: write}
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install pillow
+      - name: Store original image resolution
+        run: |
+          python - <<'PY'
+          import urllib.request, pathlib, io
+          from PIL import Image
+          assets=[["assets/people/fhg-founder.png","https://d2jqrm6oza8nb6.cloudfront.net/datasets/8c485b1f-e03b-459a-9de8-0259381a2c0a.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiNjFlM2NhNjJmNjQ1ZmFmOCIsImJ1Y2tldCI6InJ1bndheS1kYXRhc2V0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MjQ4MTYzNH0.kIX8xsdzHoF9JquIMkw-xxvaiNw9mvUXWxFeszGYAiE",192,214],["assets/people/fhg-president.png","https://d2jqrm6oza8nb6.cloudfront.net/datasets/5bdae79c-c435-4395-9882-8fdb83921bb4.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiMTllYzZiMjViM2UxMmE4ZCIsImJ1Y2tldCI6InJ1bndheS1kYXRhc2V0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MjQ0MTEyNX0.uSc4j6GJ50_N69xBbZVgGdgfch16oZXp7YqNkKutf2M",400,400],["assets/people/fhg-pillar.png","https://d2jqrm6oza8nb6.cloudfront.net/datasets/bb8947fe-b71e-40a9-859c-b3b4ab602ff1.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiMTFiOGM4NmZmNjNkZmM1NCIsImJ1Y2tldCI6InJ1bndheS1kYXRhc2V0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MjQ3NDYwN30.LbBjxeKCc7sUgjaGSPrPNaJxgmR_oXi0ZX67CWzRFK0",553,554],["assets/people/olalekan.png","https://d2jqrm6oza8nb6.cloudfront.net/datasets/ad88e82c-e105-4c70-a06c-d32a1e3f7ff3.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiYTA0NDVmOTZjMjdhZjFlYSIsImJ1Y2tldCI6InJ1bndheS1kYXRhc2V0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MjUyMTg3OH0.lstZJQy37VyO22Zddi4i2OJfWTo5JAQar9AF08laNDU",1080,1600]]
+          for path,url,w,h in assets:
+            req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'})
+            with urllib.request.urlopen(req,timeout=60) as resp: data=resp.read()
+            with Image.open(io.BytesIO(data)) as im:
+              im.load(); print(path,im.size,len(data))
+              if im.width < w or im.height < h: raise RuntimeError('Unexpected low resolution '+path)
+              dst=pathlib.Path(path);dst.parent.mkdir(parents=True,exist_ok=True)
+              im.save(dst,'PNG',optimize=True)
+          PY
+      - name: Commit high quality source photos
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/people/*.png
+          if ! git diff --cached --quiet; then git commit -m "Upgrade portraits to full original image resolution" && git push; fi
