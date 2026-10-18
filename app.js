@@ -157,7 +157,7 @@ document.querySelectorAll('[data-carousel]').forEach(carousel=>{
     const initial=cards.findIndex(card=>card.dataset.proofId===requested);
     if(initial!==-1)open(initial);
   }
-)();
+})();
 
 
 // Keep the floating CTA out of the way once visitors reach the footer.
