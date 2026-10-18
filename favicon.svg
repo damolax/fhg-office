@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
-<defs><linearGradient id="fhg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#13e76b"/><stop offset="1" stop-color="#b6ff75"/></linearGradient></defs>
-<rect width="96" height="96" rx="22" fill="#07150e"/>
-<path d="M15 41C15 26 28 21 40 32L56 50C69 66 82 55 82 43C82 26 69 21 56 33L40 50C27 64 15 55 15 41Z" fill="none" stroke="url(#fhg)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="48" y="86" font-family="Arial,sans-serif" font-size="17" font-weight="800" letter-spacing="2" fill="#caffaa" text-anchor="middle">FHG</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Oyeola">
+<defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#08c83d"/><stop offset=".52" stop-color="#20ef58"/><stop offset="1" stop-color="#a4ff4f"/></linearGradient><filter id="s" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<rect width="128" height="128" rx="28" fill="#050706"/>
+<path d="M17 65C17 42 39 31 55 49L73 71C88 89 111 84 111 63C111 42 88 33 73 51L56 72C40 90 17 84 17 65Z" fill="none" stroke="url(#g)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" filter="url(#s)"/>
+<path d="M17 65C17 42 39 31 55 49L73 71C88 89 111 84 111 63C111 42 88 33 73 51L56 72C40 90 17 84 17 65Z" fill="none" stroke="#f3ffe9" stroke-opacity=".22" stroke-width="2"/>
 </svg>
