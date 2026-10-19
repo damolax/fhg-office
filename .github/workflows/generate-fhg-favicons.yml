@@ -1,0 +1,48 @@
+name: Generate browser-compatible FHG favicon assets
+on:
+  push:
+    paths:
+      - .github/workflows/generate-fhg-favicons.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install icon conversion dependencies
+        run: python -m pip install --disable-pip-version-check cairosvg pillow
+      - name: Render official Oyeola favicon for browsers and phones
+        shell: bash
+        run: |
+          python - <<'PY'
+          from io import BytesIO
+          from pathlib import Path
+          from PIL import Image
+          import cairosvg
+          source = Path('favicon.svg').read_bytes()
+          png = cairosvg.svg2png(bytestring=source, output_width=512, output_height=512)
+          base = Image.open(BytesIO(png)).convert('RGBA')
+          base.resize((192, 192), Image.Resampling.LANCZOS).save('favicon.png', optimize=True)
+          base.resize((180, 180), Image.Resampling.LANCZOS).save('apple-touch-icon.png', optimize=True)
+          base.save('favicon.ico', format='ICO', sizes=[(16,16),(32,32),(48,48),(64,64),(128,128),(256,256)])
+          for path in ['favicon.png', 'favicon.ico', 'apple-touch-icon.png']:
+              f = Path(path)
+              assert f.is_file() and f.stat().st_size > 100
+              print(path, f.stat().st_size)
+          PY
+      - name: Commit permanent icon assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add favicon.ico favicon.png apple-touch-icon.png
+          if ! git diff --cached --quiet; then
+            git commit -m "Add PNG, ICO and Apple touch icons for FHG website"
+            git push
+          fi
