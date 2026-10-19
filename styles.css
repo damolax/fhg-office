@@ -1246,3 +1246,246 @@ body.proof-dialog-open{overflow:hidden}
   white-space:normal;
   letter-spacing:0;
 }
+
+
+/* ----------------------------------------------------------
+   Mobile browsing repair: visible fourth pillar, native-touch
+   galleries, tighter FAQ and non-obstructing mobile CTA.
+   ---------------------------------------------------------- */
+
+/* Pillar cards should never depend on a scroll-triggered reveal.
+   The fourth uses positioned children, so it MUST have its own height. */
+.promise-grid .promise-card {
+  opacity:1 !important;
+  transform:none !important;
+  visibility:visible !important;
+}
+.promise-grid .promise-card.image-card.lifestyle-card {
+  display:flex;
+  align-items:flex-end;
+  position:relative;
+  min-height:310px !important;
+  isolation:isolate;
+  background-color:#123521;
+  background-image:
+    linear-gradient(0deg,rgba(3,18,10,.94),rgba(8,31,15,.30)),
+    url("https://images.pexels.com/photos/36546141/pexels-photo-36546141.jpeg?auto=compress&cs=tinysrgb&w=1200");
+  background-position:center;
+  background-size:cover;
+}
+.promise-grid .promise-card.image-card.lifestyle-card .shade {
+  z-index:0;
+  pointer-events:none;
+}
+.promise-grid .promise-card.image-card.lifestyle-card .content {
+  z-index:1;
+  position:relative;
+  left:auto;
+  right:auto;
+  bottom:auto;
+  width:100%;
+  padding:88px 0 0;
+}
+.promise-grid .promise-card.image-card.lifestyle-card .content .icon {
+  top:23px;
+  right:23px;
+}
+.promise-grid .promise-card.image-card.lifestyle-card h3 {
+  margin:0 0 10px;
+  line-height:1.1;
+}
+.promise-grid .promise-card.image-card.lifestyle-card p {
+  margin:0;
+  color:#e6f8e9;
+}
+
+/* Both homepage sliders: no moving ticker, no scroll hijacking. */
+.team-proof-slider.testimonial-slider {
+  position:relative;
+  width:100%;
+  max-width:100%;
+  overflow:hidden;
+  margin-inline:0;
+  -webkit-mask-image:none;
+  mask-image:none;
+}
+.team-proof-slider .testimonial-track {
+  box-sizing:border-box;
+  display:flex;
+  flex-wrap:nowrap;
+  width:100% !important;
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+  gap:14px;
+  padding:4px 2px 14px;
+  animation:none !important;
+  transform:none !important;
+  scroll-behavior:smooth;
+  scroll-snap-type:x proximity;
+  scroll-padding-inline:2px;
+  overscroll-behavior-x:auto;
+  overscroll-behavior-y:auto;
+  touch-action:auto !important;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.team-proof-slider .testimonial-track::-webkit-scrollbar {display:none}
+.team-proof-slider .testimonial-track .result-slide {
+  margin:0;
+  flex:0 0 clamp(245px,30vw,335px);
+  min-width:0;
+  width:auto;
+  height:390px;
+  scroll-snap-align:start;
+  scroll-snap-stop:normal;
+}
+.team-proof-slider .result-slide .proof-figure-link img {object-fit:contain}
+.team-slider-controls {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-top:12px;
+  color:#afc8b4;
+  font:700 13px/1.4 Manrope,sans-serif;
+}
+.team-slider-controls>div {display:flex;gap:9px}
+.team-slider-arrow {
+  display:grid;
+  place-items:center;
+  min-width:44px;
+  min-height:44px;
+  border-radius:50%;
+  cursor:pointer;
+  color:#e7ffdd;
+  background:#183523;
+  border:1px solid rgba(192,255,164,.26);
+  font-size:20px;
+  line-height:1;
+}
+.team-slider-arrow:disabled,
+.result-carousel .carousel-arrow:disabled {opacity:.35;cursor:default}
+.team-slider-arrow:not(:disabled):hover {background:#31523a}
+.team-slider-arrow:focus-visible,
+.result-carousel-track:focus-visible,
+.team-proof-slider .testimonial-track:focus-visible {
+  outline:2px solid #c0ff91;
+  outline-offset:3px;
+}
+
+/* FHG wider achievement scroller: do not disable vertical finger scrolling.
+   Never auto-advance or force snap while somebody is using the page. */
+.result-carousel {max-width:100%;min-width:0}
+.result-carousel .result-carousel-track {
+  box-sizing:border-box;
+  display:flex;
+  flex-wrap:nowrap;
+  align-items:flex-start;
+  width:100%;
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x proximity !important;
+  scroll-snap-stop:normal !important;
+  touch-action:auto !important;
+  overscroll-behavior-x:auto !important;
+  overscroll-behavior-y:auto !important;
+  -webkit-overflow-scrolling:touch;
+}
+.org-result-carousel .org-result-card {
+  align-self:flex-start;
+  flex-shrink:0;
+  height:auto;
+}
+.org-result-carousel .org-result-card .proof-card-link {height:auto}
+.org-result-carousel .org-result-card .proof-open-inline {margin-top:14px}
+.result-carousel .carousel-arrow {z-index:6}
+
+/* Less separation between the watch banner and the questions,
+   with the questions stacked close to the section title. */
+#faq.faq-section {
+  align-items:start;
+  gap:clamp(22px,3vw,46px);
+}
+#faq.faq-section .section-head {margin-bottom:12px}
+#faq .faq-list {margin-top:0}
+#faq .faq-list details {padding:16px 0}
+#faq .faq-list summary {line-height:1.5}
+
+/* Tablet and touch devices */
+@media (pointer:coarse) and (max-width:1200px) {
+  .promise-grid .promise-card.image-card.lifestyle-card {
+    min-height:280px !important;
+    padding:26px !important;
+  }
+  .promise-grid .promise-card.image-card.lifestyle-card .content {padding-top:70px}
+  .result-carousel .result-carousel-track {
+    touch-action:auto !important;
+    scroll-snap-type:x proximity !important;
+  }
+  .result-carousel .carousel-arrow {
+    display:grid !important;
+    place-items:center;
+    top:auto;
+    bottom:3px;
+    width:42px;
+    height:42px;
+    transform:none;
+    border-radius:50%;
+  }
+  .result-carousel {padding-bottom:51px}
+  .result-carousel .carousel-arrow.prev {left:calc(50% - 49px)}
+  .result-carousel .carousel-arrow.next {right:calc(50% - 49px)}
+  .org-result-carousel .org-result-card {
+    flex-basis:min(82vw,360px) !important;
+    max-width:min(82vw,360px) !important;
+    min-height:0 !important;
+  }
+  .team-proof-slider .testimonial-track .result-slide {
+    flex-basis:min(78vw,335px);
+    height:min(440px,112vw);
+  }
+}
+
+/* Mobile: no full-width sticky button masking content, shorter FAQ rhythm. */
+@media (max-width:700px) {
+  .promise-grid {grid-template-columns:minmax(0,1fr) !important}
+  .promise-grid .promise-card.image-card.lifestyle-card {
+    min-height:270px !important;
+  }
+  .home-testimonials.compact-section {padding-bottom:42px}
+  .organisation-results-preview.compact-section {padding-top:38px;padding-bottom:34px}
+  .organisation-results-preview .section-head,
+  .organisation-results-preview .testimonial-head {margin-bottom:16px}
+  #faq.faq-section.compact-section {
+    display:block !important;
+    padding-top:22px !important;
+    padding-bottom:36px !important;
+    margin-top:0 !important;
+  }
+  #faq .section-head {margin:0 0 16px !important}
+  #faq .section-head h2 {margin-bottom:0}
+  #faq .faq-list details {padding:13px 0}
+  #faq .faq-list summary {font-size:clamp(16px,4.3vw,18px)}
+  #faq .faq-list p {font-size:14px}
+  .video-link-banner {
+    margin-top:20px !important;
+    margin-bottom:16px !important;
+    padding:28px 24px !important;
+  }
+  .floating-join {
+    width:auto !important;
+    left:auto !important;
+    right:14px !important;
+    bottom:calc(12px + env(safe-area-inset-bottom,0px)) !important;
+    padding:11px 17px !important;
+    font-size:12px !important;
+    min-height:44px !important;
+    max-width:calc(100vw - 28px);
+  }
+  .team-slider-controls {margin-top:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  .team-proof-slider .testimonial-track,.result-carousel .result-carousel-track{scroll-behavior:auto}
+}
