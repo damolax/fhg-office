@@ -1,0 +1,44 @@
+name: Import uploaded team results
+on:
+  push:
+    paths: [.github/workflows/import-team-2026.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  images:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: true}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install pillow
+      - name: Store submitted image originals
+        run: |
+          python - <<'PY'
+          import urllib.request,io,pathlib
+          from PIL import Image,ImageDraw
+          files=[
+            ('192083','https://d2ol7oe51mr4n9.cloudfront.net/user_3KdDF5DaV0UYa762QnaK3das6l0/fca3870e-f646-4f99-a088-9c505cb05efc.jpg'),
+            ('174141','https://d2ol7oe51mr4n9.cloudfront.net/user_3KdDF5DaV0UYa762QnaK3das6l0/c67560b9-3df8-41de-ac51-c0fec0adf620.jpg'),
+            ('172285','https://d2jqrm6oza8nb6.cloudfront.net/datasets/a5b9d5a9-2d20-45d2-8cc7-f74c61b0ada8.jpg?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiMDg1NDc0Mzg4ZTZjZjU0NyIsImJ1Y2tldCI6InJ1bndheS1kYXRhc2V0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MjQ5ODEwNH0.pGk7TNz_I-1j_jcw1MjM2cYsf-W4oc5hGSXBgqE5Iho'),
+          ]
+          dest=pathlib.Path('assets/team-results')
+          dest.mkdir(parents=True,exist_ok=True)
+          for name,url in files:
+              with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'}),timeout=45) as r: data=r.read()
+              im=Image.open(io.BytesIO(data)).convert('RGB')
+              # Hide only the person posting the message, not sponsors or uplines.
+              privacy={'192083':[(67,65,280,125)],'174141':[(70,197,245,234)],'172285':[(68,50,275,126)]}
+              for box in privacy.get(name,[]):ImageDraw.Draw(im).rectangle(box,fill=(25,31,34))
+              if min(im.size)<600:raise RuntimeError('Image unexpectedly low resolution '+name)
+              im.save(dest/(name+'.jpg'),'JPEG',quality=93,optimize=True,subsampling=0)
+              print(name,im.size)
+          PY
+      - name: Publish original proof images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/team-results/192083.jpg assets/team-results/174141.jpg assets/team-results/172285.jpg
+          if ! git diff --cached --quiet; then git commit -m "Add three new team results screenshots" && git push; fi
