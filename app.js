@@ -19,7 +19,7 @@ const observer=new IntersectionObserver(entries=>{
     if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}
   })
 },{threshold:.12});
-document.querySelectorAll('.promise-card,.split-media,.split-copy,.wealth-copy,.wealth-gallery,.story-card,.video-placeholder,.lifestyle-cards article,.faq-list details,.journey-flow article,.testimonial-gallery figure').forEach(el=>{
+document.querySelectorAll('.split-media,.split-copy,.wealth-copy,.wealth-gallery,.story-card,.video-placeholder,.lifestyle-cards article,.journey-flow article,.testimonial-gallery figure').forEach(el=>{
   el.style.opacity='0';el.style.transform='translateY(22px)';el.style.transition='opacity .7s ease,transform .7s ease';observer.observe(el)
 });
 const style=document.createElement('style');
@@ -39,39 +39,43 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 
 
-document.querySelectorAll('[data-carousel]').forEach(carousel=>{
-  const track=carousel.querySelector('.result-carousel-track');
-  const prev=carousel.querySelector('.carousel-arrow.prev');
-  const next=carousel.querySelector('.carousel-arrow.next');
-  if(!track) return;
-
-  const step=()=>Math.min(track.clientWidth*.82,420);
-  const move=dir=>track.scrollBy({left:dir*step(),behavior:'smooth'});
-
-  prev?.addEventListener('click',()=>move(-1));
-  next?.addEventListener('click',()=>move(1));
-
-  let timer;
-  const startAuto=()=>{
-    clearInterval(timer);
-    timer=setInterval(()=>{
-      const atEnd=track.scrollLeft+track.clientWidth>=track.scrollWidth-12;
-      if(atEnd) track.scrollTo({left:0,behavior:'smooth'});
-      else move(1);
-    },4200);
+// Carousels stay still until the visitor swipes, scrolls or chooses an arrow.
+// Native scroll preserves vertical page gestures on touch screens.
+function setUpManualCarousel(root, trackSelector, previousSelector, nextSelector){
+  const track=root.querySelector(trackSelector);
+  if(!track)return;
+  const previous=root.querySelector(previousSelector);
+  const next=root.querySelector(nextSelector);
+  const step=()=>{
+    const first=track.querySelector(':scope > *');
+    if(!first)return Math.max(250,track.clientWidth*.8);
+    const gap=parseFloat(getComputedStyle(track).columnGap)||14;
+    return first.getBoundingClientRect().width+gap;
   };
-  const stopAuto=()=>clearInterval(timer);
-
-  track.addEventListener('pointerdown',stopAuto,{passive:true});
-  track.addEventListener('touchstart',stopAuto,{passive:true});
-  track.addEventListener('pointerup',startAuto,{passive:true});
-  track.addEventListener('touchend',startAuto,{passive:true});
-  track.addEventListener('mouseenter',stopAuto);
-  track.addEventListener('mouseleave',startAuto);
-
-  startAuto();
+  const move=dir=>track.scrollBy({left:dir*step(),behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  previous?.addEventListener('click',()=>move(-1));
+  next?.addEventListener('click',()=>move(1));
+  const update=()=>{
+    const max=track.scrollWidth-track.clientWidth;
+    if(previous)previous.disabled=track.scrollLeft<3;
+    if(next)next.disabled=track.scrollLeft>=max-3 || max<=0;
+  };
+  track.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update,{passive:true});
+  track.addEventListener('keydown',event=>{
+    if(event.key==='ArrowRight'||event.key==='ArrowLeft'){
+      event.preventDefault();move(event.key==='ArrowRight'?1:-1);
+    }
+  });
+  requestAnimationFrame(update);
+}
+document.querySelectorAll('[data-carousel]').forEach(root=>
+  setUpManualCarousel(root,'.result-carousel-track','.carousel-arrow.prev','.carousel-arrow.next')
+);
+document.querySelectorAll('[data-team-carousel]').forEach(root=>{
+  const section=root.closest('.home-testimonials');
+  if(section)setUpManualCarousel(section,'.testimonial-track','.team-slider-arrow.prev','.team-slider-arrow.next');
 });
-
 
 // Evidence gallery: accessible, keyboard-friendly details for every result.
 (function setupResultStories(){
