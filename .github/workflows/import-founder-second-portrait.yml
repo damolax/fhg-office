@@ -1,0 +1,36 @@
+name: Import alternative founder portrait
+on:
+  push:
+    paths: [.github/workflows/import-founder-second-portrait.yml]
+  workflow_dispatch:
+permissions: {contents: write}
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Save uploaded founder image
+        shell: bash
+        run: |
+          python - <<'PY'
+          import urllib.request,pathlib,struct
+          url="https://d2jqrm6oza8nb6.cloudfront.net/datasets/afefe8db-b7c8-491d-a74e-f508ffb25e83.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiNDJkM2M4M2M2NmIxZTQ4NSIsImJ1Y2tldCI6InJ1bndheS1kYXRhc2V0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MjU5MDAxMn0.lPnBEeXMtnWyWiKOho1xcUxTr9wZmfs-INq9yBxp6OM"
+          request=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
+          with urllib.request.urlopen(request, timeout=45) as response: data=response.read()
+          if not data.startswith(bytes([137,80,78,71,13,10,26,10])):
+              raise RuntimeError("Not PNG")
+          width,height=struct.unpack(">II",data[16:24])
+          if width<350 or height<500: raise RuntimeError(f"Unexpected dimensions {width} x {height}")
+          path=pathlib.Path("assets/people/fhg-founder-story.png")
+          path.parent.mkdir(parents=True,exist_ok=True)
+          path.write_bytes(data)
+          print("Imported",width,height,len(data))
+          PY
+      - name: Commit image
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/people/fhg-founder-story.png
+          if ! git diff --cached --quiet; then git commit -m "Store alternate Jagunmolu founder portrait" && git push; fi
