@@ -83,6 +83,7 @@ document.querySelectorAll('[data-carousel]').forEach(carousel=>{
   const category=document.getElementById('proofModalCategory');
   const statistic=document.getElementById('proofModalStat');
   const description=document.getElementById('proofModalDescription');
+  const relationship=document.getElementById('proofModalRelationship');
   const panel=modal.querySelector('.proof-modal-panel');
   const prev=document.getElementById('proofPrevious');
   const next=document.getElementById('proofNext');
@@ -96,6 +97,11 @@ document.querySelectorAll('[data-carousel]').forEach(carousel=>{
     category.textContent=card.dataset.proofLabel||'Achievement';
     statistic.textContent=card.dataset.proofStat||'';
     description.textContent=card.dataset.proofDescription||'';
+    if(relationship){
+      const memberRole=card.dataset.proofRelationship||'';
+      relationship.textContent=memberRole?'Oyekunle Olalekan Musodiq · '+memberRole:'';
+      relationship.hidden=!memberRole;
+    }
     visual.replaceChildren();
     const image=card.querySelector('.story-result-media img');
     if(image){
