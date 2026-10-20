@@ -1674,3 +1674,26 @@ body.proof-dialog-open{overflow:hidden}
 .blog-bottom-nav{padding-bottom:90px}
 }
 @media(prefers-reduced-motion:reduce){.blog-card,.blog-card-image img{transition:none}}
+
+
+/* Homepage introduction to five FHG learning articles */
+.blog-home-preview{border-top:1px solid rgba(188,255,150,.11)}
+.blog-home-preview-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:26px}
+.blog-home-preview-heading>div{max-width:820px}
+.blog-home-preview-heading h2{font:800 clamp(32px,3.9vw,54px)/1.1 Manrope,sans-serif;letter-spacing:-.046em;margin:12px 0}
+.blog-home-preview-heading p{color:var(--muted);font-size:17px;line-height:1.7}
+.blog-home-preview-heading .btn{flex-shrink:0}
+.blog-home-preview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.blog-home-preview-grid article{overflow:hidden;border-radius:21px;border:1px solid rgba(197,255,154,.15);background:linear-gradient(145deg,#14291c,#0c1b13);display:flex;flex-direction:column}
+.blog-home-preview-image{display:block;aspect-ratio:16/9;overflow:hidden;background:#183222}
+.blog-home-preview-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .22s}
+.blog-home-preview-image:hover img{transform:scale(1.03)}
+.blog-home-preview-grid article>div{padding:21px 22px 24px;display:flex;flex:1;align-items:flex-start;flex-direction:column}
+.blog-home-preview-grid article>div>span{font:800 11px/1.4 Manrope;color:var(--lime);text-transform:uppercase;letter-spacing:.06em}
+.blog-home-preview-grid h3{font:800 clamp(20px,2.3vw,27px)/1.2 Manrope,sans-serif;letter-spacing:-.03em;margin:12px 0}
+.blog-home-preview-grid h3 a{color:var(--text);text-decoration:none}
+.blog-home-preview-grid p{color:var(--muted);font-size:14px;line-height:1.68;margin:0 0 16px}
+.blog-home-preview-read{margin-top:auto;color:var(--lime);font:800 13px Manrope;text-decoration:none}
+.blog-home-preview-read:hover,.blog-home-preview-grid h3 a:hover{text-decoration:underline}
+@media(max-width:840px){.blog-home-preview-heading{align-items:flex-start;flex-direction:column}.blog-home-preview-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:610px){.blog-home-preview-grid{grid-template-columns:1fr}.blog-home-preview-image{aspect-ratio:1.9/1}.blog-home-preview-grid article>div{padding:18px 20px}.blog-home-preview-heading p{font-size:15px}}
