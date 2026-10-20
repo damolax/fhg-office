@@ -1489,3 +1489,68 @@ body.proof-dialog-open{overflow:hidden}
 @media (prefers-reduced-motion:reduce){
   .team-proof-slider .testimonial-track,.result-carousel .result-carousel-track{scroll-behavior:auto}
 }
+
+
+/* 2026 search-discovery enhancements: practical guides, internal navigation */
+.seo-discovery {border-top:1px solid rgba(188,255,155,.11);scroll-margin-top:100px}
+.seo-discovery .section-head {max-width:850px;margin-bottom:28px}
+.seo-discovery .section-head h2 {font-size:clamp(29px,3.8vw,50px);line-height:1.09}
+.seo-discovery .section-lead {max-width:830px;font-size:clamp(15px,1.35vw,18px);line-height:1.8}
+.seo-discovery .section-lead a,.seo-guide-section p a {color:var(--lime);text-underline-offset:4px;text-decoration-thickness:1px}
+.seo-link-cards {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.seo-link-cards article {padding:clamp(22px,3vw,34px);background:linear-gradient(145deg,rgba(42,78,49,.3),rgba(11,26,17,.92));border:1px solid rgba(193,255,165,.16);border-radius:24px;display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.seo-link-cards article>span {color:var(--lime);font:800 11px/1.4 Manrope,sans-serif;text-transform:uppercase;letter-spacing:.11em}
+.seo-link-cards h3 {font:800 clamp(21px,2.2vw,27px)/1.2 Manrope,sans-serif;margin:13px 0}
+.seo-link-cards p {color:var(--muted);font-size:15px;line-height:1.7;max-width:490px;margin:0 0 22px}
+.seo-link-cards a {color:var(--lime);font-weight:800;font-size:14px;line-height:1.4;text-decoration:none;margin-top:auto}
+.seo-link-cards a:hover,.footer-seo-links a:hover {text-decoration:underline;text-underline-offset:5px}
+.seo-inline-actions {display:flex;align-items:center;flex-wrap:wrap;gap:18px}
+.footer-seo-links {grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px 23px;align-items:center;border-top:1px solid rgba(194,255,163,.13);margin-top:6px;padding-top:22px}
+.footer-seo-links a {font:700 12px/1.5 Manrope,sans-serif;color:#c6d8c8;text-decoration:none}
+.seo-guide-page {padding-top:115px}
+.seo-guide-page .section {scroll-margin-top:110px}
+.seo-guide-hero {padding-top:clamp(30px,6vw,68px) !important;padding-bottom:clamp(43px,7vw,86px) !important;border-bottom:1px solid rgba(199,255,156,.2)}
+.seo-guide-hero-copy {max-width:950px}
+.seo-guide-hero h1 {font:800 clamp(40px,5.9vw,77px)/1.07 Manrope,sans-serif;letter-spacing:-.045em;max-width:890px;margin:18px 0 24px;text-wrap:balance}
+.seo-guide-hero .section-lead {font-size:clamp(16px,1.5vw,20px);line-height:1.75;color:#c7d7c9;max-width:850px}
+.seo-guide-hero .hero-actions {margin-top:24px}
+.seo-guide-section {padding-top:clamp(40px,5.6vw,75px) !important;padding-bottom:clamp(38px,5.6vw,75px) !important}
+.seo-guide-section>.section-head {max-width:870px;margin-bottom:26px}
+.seo-guide-section h2 {font-size:clamp(31px,3.7vw,49px);line-height:1.13;margin:12px 0}
+.seo-guide-section .section-lead {max-width:850px;line-height:1.8;font-size:clamp(15px,1.4vw,18px)}
+.seo-guide-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.seo-guide-grid article {border:1px solid var(--line);border-radius:22px;background:linear-gradient(155deg,#122b1b,#101d14);padding:clamp(22px,3vw,31px);min-width:0}
+.seo-guide-grid h3 {font:800 clamp(20px,2.2vw,25px)/1.2 Manrope,sans-serif;margin:0 0 13px}
+.seo-guide-grid p,.seo-steps p,.seo-location-panel p,.seo-guide-cta p {font-size:clamp(15px,1.35vw,17px);color:var(--muted);line-height:1.75;margin:0}
+.seo-steps {display:grid;gap:14px}
+.seo-steps article {display:grid;grid-template-columns:55px 1fr;gap:16px;border:1px solid var(--line);background:rgba(255,255,255,.025);border-radius:18px;padding:24px;align-items:start}
+.seo-steps article>span {display:grid;place-items:center;height:42px;width:42px;border-radius:50%;background:rgba(39,224,111,.13);color:var(--lime);font:800 13px Manrope}
+.seo-steps h3 {font:800 22px/1.3 Manrope,sans-serif;margin:2px 0 9px}
+.seo-guide-note {font-size:15px !important;line-height:1.85;margin-top:20px !important}
+.seo-location-panel {display:block;border-radius:28px;border:1px solid rgba(191,255,158,.16);background:linear-gradient(145deg,#153820,#0c1d14);padding:clamp(26px,5vw,52px) !important}
+.seo-location-panel>div {max-width:800px}
+.seo-location-panel h2 {margin:14px 0 18px}
+.seo-location-panel p+p {margin-top:16px}
+.seo-location-panel .btn {margin-top:26px}
+.seo-guide-faq {border-top:1px solid var(--line);max-width:970px}
+.seo-guide-faq details {border-bottom:1px solid var(--line);padding:17px 0}
+.seo-guide-faq summary {font:800 17px/1.5 Manrope,sans-serif;cursor:pointer;list-style:none;display:flex;gap:20px;align-items:center;justify-content:space-between}
+.seo-guide-faq summary::after {content:"+";color:var(--lime);font-size:25px;line-height:1}
+.seo-guide-faq details[open] summary::after {content:"−"}
+.seo-guide-faq p {color:var(--muted);line-height:1.8;max-width:780px;margin:13px 0 0}
+.seo-guide-cta {display:flex;align-items:center;justify-content:space-between;gap:28px;border:1px solid rgba(172,247,146,.24);border-radius:30px;padding:clamp(26px,5vw,55px) !important;background:linear-gradient(135deg,#163821,#0b2013)}
+.seo-guide-cta>div {max-width:690px}
+.seo-guide-cta h2 {font:800 clamp(29px,3.5vw,49px)/1.13 Manrope,sans-serif;letter-spacing:-.04em;margin:12px 0 16px}
+.seo-guide-cta .btn {flex:0 0 auto}
+@media (max-width:750px){
+ .seo-link-cards,.seo-guide-grid {grid-template-columns:1fr}
+ .seo-guide-page {padding-top:90px}
+ .seo-guide-hero h1 {font-size:clamp(37px,9vw,54px)}
+ .seo-guide-hero .hero-actions {gap:18px;flex-wrap:wrap}
+ .seo-steps article {padding:18px;grid-template-columns:42px 1fr;gap:12px}
+ .seo-steps h3 {font-size:19px}
+ .seo-guide-faq summary {font-size:16px}
+ .seo-guide-cta {flex-direction:column;align-items:stretch;border-radius:24px}
+ .seo-guide-cta .btn {align-self:flex-start}
+ .footer-seo-links {gap:12px 19px}
+}
