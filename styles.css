@@ -1697,3 +1697,32 @@ body.proof-dialog-open{overflow:hidden}
 .blog-home-preview-read:hover,.blog-home-preview-grid h3 a:hover{text-decoration:underline}
 @media(max-width:840px){.blog-home-preview-heading{align-items:flex-start;flex-direction:column}.blog-home-preview-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:610px){.blog-home-preview-grid{grid-template-columns:1fr}.blog-home-preview-image{aspect-ratio:1.9/1}.blog-home-preview-grid article>div{padding:18px 20px}.blog-home-preview-heading p{font-size:15px}}
+
+
+/* Readability fix: article CTAs must have dark lettering on the light-green button.
+   Overrides the general prose link colour that was making buttons unreadable. */
+.blog-post-page .blog-prose .blog-conclusion a.btn,
+.blog-home-page .blog-cta-section a.btn,
+.blog-home-page .blog-hub-hero a.btn:not(.btn-ghost) {
+  color: #092719 !important;
+  background: linear-gradient(110deg,#37ed78 0%,#b7ff82 100%) !important;
+  font: 900 15px/1.35 Manrope,sans-serif !important;
+  text-shadow: none !important;
+  text-decoration: none !important;
+  -webkit-text-fill-color: #092719;
+  border: 1px solid rgba(230,255,200,.32);
+  box-shadow: 0 12px 26px rgba(50,222,100,.18);
+}
+.blog-post-page .blog-prose .blog-conclusion a.btn:hover,
+.blog-home-page .blog-cta-section a.btn:hover {
+  color: #071f13 !important;
+  -webkit-text-fill-color: #071f13;
+  background: linear-gradient(110deg,#59f58d 0%,#ceff99 100%) !important;
+}
+.blog-conclusion p {color: #e7f2e8 !important;line-height:1.76}
+.blog-conclusion h2 {color: #f7fff8}
+.blog-post-page .blog-prose .blog-conclusion a.btn:focus-visible {outline: 3px solid #fff;outline-offset:4px}
+@media(max-width:700px){
+ .blog-post-page .blog-prose .blog-conclusion a.btn {min-height:52px;padding:14px 21px;font-size:15px!important;max-width:100%;white-space:normal}
+ .blog-conclusion {padding:26px 22px}
+}
