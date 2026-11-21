@@ -52,13 +52,20 @@ function setUpManualCarousel(root, trackSelector, previousSelector, nextSelector
     const gap=parseFloat(getComputedStyle(track).columnGap)||14;
     return first.getBoundingClientRect().width+gap;
   };
-  const move=dir=>track.scrollBy({left:dir*step(),behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  const move=dir=>{
+    const max=Math.max(0,track.scrollWidth-track.clientWidth);
+    if(max<=3)return;
+    const target=track.scrollLeft+dir*step();
+    // Loop only inside the current carousel; never enter another section.
+    const left=dir>0 && track.scrollLeft>=max-3 ? 0 : dir<0 && track.scrollLeft<=3 ? max : Math.min(max,Math.max(0,target));
+    track.scrollTo({left,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  };
   previous?.addEventListener('click',()=>move(-1));
   next?.addEventListener('click',()=>move(1));
   const update=()=>{
     const max=track.scrollWidth-track.clientWidth;
-    if(previous)previous.disabled=track.scrollLeft<3;
-    if(next)next.disabled=track.scrollLeft>=max-3 || max<=0;
+    if(previous)previous.disabled=max<=3;
+    if(next)next.disabled=max<=3;
   };
   track.addEventListener('scroll',update,{passive:true});
   window.addEventListener('resize',update,{passive:true});
@@ -91,12 +98,19 @@ document.querySelectorAll('[data-team-carousel]').forEach(root=>{
   const panel=modal.querySelector('.proof-modal-panel');
   const prev=document.getElementById('proofPrevious');
   const next=document.getElementById('proofNext');
+  let activeCards=[];
   let current=0;
   let previousFocus=null;
 
+  function groupFor(card){
+    const grid=card.closest('.story-results-grid');
+    return grid?Array.from(grid.querySelectorAll('.story-result-card')):[card];
+  }
+
   function show(index){
-    current=(index+cards.length)%cards.length;
-    const card=cards[current];
+    if(!activeCards.length)return;
+    current=(index+activeCards.length)%activeCards.length;
+    const card=activeCards[current];
     heading.textContent=card.dataset.proofTitle||'Shared result';
     category.textContent=card.dataset.proofLabel||'Achievement';
     statistic.textContent=card.dataset.proofStat||'';
@@ -118,13 +132,15 @@ document.querySelectorAll('[data-team-carousel]').forEach(root=>{
       const fallback=card.querySelector('.proof-image-unavailable');
       if(fallback)visual.appendChild(fallback.cloneNode(true));
     }
-    prev.setAttribute('aria-label','Previous result, '+(cards[(current-1+cards.length)%cards.length].dataset.proofTitle||''));
-    next.setAttribute('aria-label','Next result, '+(cards[(current+1)%cards.length].dataset.proofTitle||''));
+    prev.setAttribute('aria-label','Previous result, '+(activeCards[(current-1+activeCards.length)%activeCards.length].dataset.proofTitle||''));
+    next.setAttribute('aria-label','Next result, '+(activeCards[(current+1)%activeCards.length].dataset.proofTitle||''));
   }
 
-  function open(index){
+  function open(card){
     previousFocus=document.activeElement;
-    show(index);
+    // Personal team and general FHG stories have separate navigation sets.
+    activeCards=groupFor(card);
+    show(activeCards.indexOf(card));
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden','false');
     document.body.classList.add('proof-dialog-open');
@@ -138,11 +154,11 @@ document.querySelectorAll('[data-team-carousel]').forEach(root=>{
     if(previousFocus&&typeof previousFocus.focus==='function')previousFocus.focus();
   }
 
-  cards.forEach((card,index)=>{
-    card.addEventListener('click',()=>open(index));
+  cards.forEach(card=>{
+    card.addEventListener('click',()=>open(card));
     card.addEventListener('keydown',event=>{
       if(event.key==='Enter'||event.key===' '){
-        event.preventDefault();open(index);
+        event.preventDefault();open(card);
       }
     });
   });
@@ -161,11 +177,11 @@ document.querySelectorAll('[data-team-carousel]').forEach(root=>{
       else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
     }
   });
-  // Open a specific result when a visitor arrives from Home or About Me.
+  // Deep links from Home, About Me and About FHG open in the correct results group.
   const requested=new URLSearchParams(window.location.search).get('result');
   if(requested){
-    const initial=cards.findIndex(card=>card.dataset.proofId===requested);
-    if(initial!==-1)open(initial);
+    const initial=cards.find(card=>card.dataset.proofId===requested);
+    if(initial)open(initial);
   }
 })();
 
