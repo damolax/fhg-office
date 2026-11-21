@@ -1726,3 +1726,12 @@ body.proof-dialog-open{overflow:hidden}
  .blog-post-page .blog-prose .blog-conclusion a.btn {min-height:52px;padding:14px 21px;font-size:15px!important;max-width:100%;white-space:normal}
  .blog-conclusion {padding:26px 22px}
 }
+
+
+/* About Me: main portrait with preserved original event photograph */
+.about-story-hero .about-portrait-layout{position:relative;overflow:hidden;isolation:isolate;border-radius:26px;background:#0e1812}
+.about-story-hero .about-portrait-layout>img.about-primary-photo{display:block;width:100%;height:clamp(440px,48vw,620px)!important;max-height:none!important;object-fit:cover!important;object-position:center 15%!important;border-radius:26px}
+.about-story-hero .about-portrait-layout .about-supporting-photo{position:absolute;z-index:3;right:16px;bottom:16px;width:clamp(125px,35%,185px);margin:0;overflow:hidden;border:2px solid rgba(255,255,255,.72);border-radius:18px;background:#0c1912;box-shadow:0 16px 42px rgba(0,0,0,.55)}
+.about-story-hero .about-portrait-layout .about-supporting-photo img{display:block;width:100%!important;height:clamp(140px,17vw,185px)!important;max-height:none!important;object-fit:cover!important;object-position:center 20%;border-radius:0!important}
+.about-story-hero .about-portrait-layout .about-supporting-photo figcaption{margin:0;padding:9px 8px;text-align:center;color:#f0f9ef;font-size:11px;line-height:1.25;font-weight:700}
+@media(max-width:640px){.about-story-hero .about-portrait-layout>img.about-primary-photo{height:470px!important;object-position:center 13%!important}.about-story-hero .about-portrait-layout .about-supporting-photo{right:11px;bottom:11px;width:128px}.about-story-hero .about-portrait-layout .about-supporting-photo img{height:135px!important}}
