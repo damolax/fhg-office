@@ -1735,3 +1735,12 @@ body.proof-dialog-open{overflow:hidden}
 .about-story-hero .about-portrait-layout .about-supporting-photo img{display:block;width:100%!important;height:clamp(140px,17vw,185px)!important;max-height:none!important;object-fit:cover!important;object-position:center 20%;border-radius:0!important}
 .about-story-hero .about-portrait-layout .about-supporting-photo figcaption{margin:0;padding:9px 8px;text-align:center;color:#f0f9ef;font-size:11px;line-height:1.25;font-weight:700}
 @media(max-width:640px){.about-story-hero .about-portrait-layout>img.about-primary-photo{height:470px!important;object-position:center 13%!important}.about-story-hero .about-portrait-layout .about-supporting-photo{right:11px;bottom:11px;width:128px}.about-story-hero .about-portrait-layout .about-supporting-photo img{height:135px!important}}
+
+
+/* Full-fidelity About Me portrait: use the original photograph without cropping or image upscaling. */
+.about-story-hero .about-portrait-layout{display:flex;flex-direction:column;gap:14px;position:relative;overflow:visible;isolation:auto;border-radius:0;background:transparent}
+.about-story-hero .about-portrait-layout>img.about-primary-photo{display:block;width:100%;height:auto!important;max-height:none!important;aspect-ratio:9/16;object-fit:contain!important;object-position:center!important;border-radius:24px;box-shadow:0 20px 45px rgba(0,0,0,.3)}
+.about-story-hero .about-portrait-layout .about-supporting-photo{position:static;display:flex;align-items:center;gap:14px;width:100%;margin:0;padding:10px;overflow:hidden;border:1px solid rgba(255,255,255,.15);border-radius:18px;background:#102019;box-shadow:none}
+.about-story-hero .about-portrait-layout .about-supporting-photo img{display:block;flex:0 0 110px;width:110px!important;height:116px!important;max-height:none!important;object-fit:cover!important;object-position:center 20%;border-radius:12px!important}
+.about-story-hero .about-portrait-layout .about-supporting-photo figcaption{margin:0;padding:8px 4px;text-align:left;color:#f0f9ef;font-size:13px;line-height:1.4;font-weight:700}
+@media(max-width:640px){.about-story-hero .about-portrait-layout>img.about-primary-photo{width:100%;height:auto!important;max-height:none!important;object-fit:contain!important;object-position:center!important}.about-story-hero .about-portrait-layout .about-supporting-photo{position:static;width:100%;right:auto;bottom:auto}.about-story-hero .about-portrait-layout .about-supporting-photo img{width:95px!important;height:100px!important;flex-basis:95px}}
